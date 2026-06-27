@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+
+<channel>
+
+<title>GuiDev10's blog</title>
+<link>https://guilhermealbuquerque9.github.io/GuiDev10/</link>
+<description>News, projects and cool random things by GuiDev10.</description>
+<language>en-us</language>
+<lastBuildDate>Sat, 27 Jun 2026 10:31:00 GMT</lastBuildDate>
+
+<item>
+<title>Welcome!</title>
+<link>https://guilhermealbuquerque9.github.io/GuiDev10/blog.html</link>
+<description>
+Welcome to my new website! Here you can see some information about me and see what i like. This is my
+corner of the World Wide Web! In my blog, i will post some about my projects and other cool things.
+</description>
+<pubDate>Sat, 27 Jun 2026 10:25:20 GMT</pubDate>
+<guid>https://guilhermealbuquerque9.github.io/GuiDev10/blog.html#welcome</guid>
+</item>
+
+</channel>
+
+</rss>

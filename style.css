@@ -1,0 +1,205 @@
+/* =========================
+   Reset
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* =========================
+   Corpo
+========================= */
+
+body{
+
+    font-family:"Segoe UI",Tahoma,sans-serif;
+    color:#333;
+    line-height:1.6;
+
+    padding:40px;
+
+    background:linear-gradient(
+        to bottom,
+        #d8f3ff 0%,
+        #f8fcff 35%,
+        #ffffff 100%);
+}
+
+/* =========================
+   Títulos
+========================= */
+
+h1{
+
+    color:#1f5ea8;
+    font-size:2.8rem;
+
+    margin-bottom:15px;
+
+    text-shadow:
+        0 1px #fff,
+        0 0 6px rgba(255,255,255,.8);
+}
+
+h2{
+
+    color:#2d6f34;
+
+    margin-top:35px;
+    margin-bottom:12px;
+}
+
+/* =========================
+   Texto
+========================= */
+
+p{
+
+    margin-bottom:18px;
+    max-width:900px;
+}
+
+/* =========================
+   Navegação
+========================= */
+
+nav{
+
+    margin:30px 0;
+}
+
+/* =========================
+   Botões Frutiger Aero
+========================= */
+
+nav a,
+.aero-button{
+
+    display:inline-block;
+
+    padding:8px 20px;
+
+    margin:4px;
+
+    text-decoration:none;
+
+    font-family:"Segoe UI",Tahoma,sans-serif;
+    font-size:14px;
+    font-weight:bold;
+
+    color:#173b6d;
+
+    cursor:pointer;
+
+    border-radius:7px;
+
+    border:1px solid #7fa9c9;
+
+    background:
+        linear-gradient(
+            #ffffff 0%,
+            #f2fbff 18%,
+            #d6f4ff 48%,
+            #b9e8ff 49%,
+            #8fd6ff 100%);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.95),
+        inset 0 -1px rgba(0,0,0,.12),
+        0 1px 3px rgba(0,0,0,.18);
+
+    transition:
+        background .15s,
+        transform .1s,
+        box-shadow .15s,
+        color .15s;
+
+    appearance:none;
+    -webkit-appearance:none;
+}
+
+nav a:hover,
+.aero-button:hover{
+
+    background:
+        linear-gradient(
+            #ffffff,
+            #f7fff0 20%,
+            #d7ffbc 55%,
+            #8bdd52 100%);
+
+    border-color:#69a83b;
+
+    color:#184400;
+}
+
+nav a:active,
+.aero-button:active{
+
+    transform:translateY(1px);
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,.25);
+}
+
+/* =========================
+   Links
+========================= */
+
+p a{
+
+    color:#0066cc;
+    font-weight:bold;
+}
+
+p a:hover{
+
+    color:#00aa55;
+}
+
+/* =========================
+   Seleção
+========================= */
+
+::selection{
+
+    background:#87d7ff;
+    color:#000;
+}
+
+/* =========================
+   Responsivo
+========================= */
+
+@media (max-width:700px){
+
+    body{
+
+        padding:20px;
+    }
+
+    h1{
+
+        font-size:2.2rem;
+    }
+
+    nav{
+
+        text-align:center;
+    }
+
+    nav a,
+    .aero-button{
+
+        display:block;
+        width:100%;
+        max-width:320px;
+        margin:8px auto;
+    }
+}
