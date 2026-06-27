@@ -17,22 +17,6 @@ import {
 
 import {
 
-    doc,
-    setDoc,
-    getDoc
-
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-import {
-
-    collection,
-    addDoc,
-    serverTimestamp
-
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-import {
-
     collection,
     addDoc,
     doc,
