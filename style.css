@@ -1,0 +1,1371 @@
+/*==================================================
+ Pendrive Forum
+ style.css
+ Parte 1
+==================================================*/
+
+/*=========================
+ Reset
+=========================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    font-size:14px;
+    color:#30465e;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(circle at 15% 12%,rgba(255,255,255,.95) 0 90px,transparent 90px), radial-gradient(circle at 80% 18%,rgba(255,255,255,.75) 0 70px,transparent 70px), radial-gradient(circle at 82% 78%,rgba(170,255,255,.40) 0 160px,transparent 160px), radial-gradient(circle at 18% 82%,rgba(185,255,185,.35) 0 180px,transparent 180px), linear-gradient( to bottom, #79d8ff 0%, #b9edff 24%, #ffffff 58%, #ecffe8 82%, #ffffff 100% );
+
+    background-attachment:fixed;
+
+}
+
+/*=========================
+ Links
+=========================*/
+
+a{
+
+    color:#0c72bc;
+    text-decoration:none;
+    transition:.18s;
+
+}
+
+a:hover{
+
+    color:#009cff;
+
+}
+
+/*=========================
+ Layout
+=========================*/
+
+.wrapper{
+
+    width:min(1400px,96%);
+
+    margin:20px auto;
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    gap:18px;
+
+}
+
+.sidebar{
+
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+}
+
+.content{
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+}
+
+/*=========================
+ Cabeçalho
+=========================*/
+
+header{
+
+    width:min(1400px,96%);
+
+    margin:20px auto 12px;
+
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:
+
+    linear-gradient( to bottom, #d2eaff 0%, #2d4bc3 55%, #1822c5 55%, #34b8e1 100% );
+
+    border:1px solid #bfe7fb;
+
+    backdrop-filter:blur(2px);
+
+    box-shadow:
+
+    inset 0 1px white,
+
+    0 3px 10px rgba(0,0,0,.10);
+
+}
+
+/*=========================
+ Logo
+=========================*/
+
+.logo-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.logo{
+
+    width:72px;
+
+    height:auto;
+
+}
+
+.logo-text h1{
+
+    font-size:34px;
+
+    font-weight:300;
+
+    color:#fff;
+
+    text-shadow:0 1px #fff4f4;
+
+}
+
+.logo-text p{
+
+    margin-top:3px;
+
+    color:#fff;
+
+}
+
+/*=========================
+ Botões
+=========================*/
+
+.user-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.glass-button{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 22px;
+
+    min-width:120px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:600;
+
+    text-shadow:0 1px rgba(0,0,0,.25);
+
+    border:1px solid #357fbe;
+
+    background:
+
+    linear-gradient( to bottom, #d8ffd2 0%, #46d84c 55%, #16b51d 55%, #2d7d2b 100% );
+
+    box-shadow:
+
+    inset 0 1px rgba(255,255,255,.9), 0 2px 6px rgba(0,0,0,.18);
+
+}
+
+.glass-button::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:5%;
+
+    top:1px;
+
+    width:90%;
+
+    height:45%;
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,0)
+    );
+
+    opacity:.55;
+
+}
+
+.glass-button:hover{
+
+    filter:brightness(1.05);
+
+}
+
+.glass-button.green{
+
+    border-color:#3d8a31;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #d9ffd4 0%,
+        #49d84f 55%,
+        #18b321 55%,
+        #2f7f2d 100%
+    );
+
+}
+
+/*=========================
+ Menu
+=========================*/
+
+.navbar{
+
+    width:min(1400px,96%);
+
+    margin:0 auto 18px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:8px;
+
+    border-radius:14px;
+
+    background:linear-gradient( to bottom, #d2eaff 0%, #2853ff 55%, #2531f9 55%, #34b8e1 100% );
+
+    border:1px solid #bfe5fb;
+
+    box-shadow:
+
+    inset 0 1px white,
+
+    0 2px 6px rgba(0,0,0,.08);
+
+}
+
+.navbar a{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:9px 15px;
+
+    border-radius:10px;
+
+    color:#fff;
+
+    font-weight:600;
+
+}
+
+.navbar a:hover{
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #ffffff,
+        #dff4ff
+    );
+
+}
+
+.navbar img{
+
+    width:20px;
+
+    height:20px;
+
+}
+
+/*==================================================
+ Pendrive Forum
+ style.css
+ Parte 2
+==================================================*/
+
+/*=========================
+ Painéis
+=========================*/
+
+.panel{
+
+    background:#ffffff;
+
+    border:1px solid #c5e4f6;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        inset 0 1px 0 #ffffff,
+
+        0 2px 8px rgba(0,120,180,.08);
+
+}
+
+/*=========================
+ Cabeçalhos dos painéis
+=========================*/
+
+.panel h2{
+
+    position:relative;
+
+    padding:11px 15px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#ffffff;
+
+    text-shadow:0 1px rgba(0,0,0,.25);
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #bde8ff 0%,
+        #46c4ff 55%,
+        #229fff 55%,
+        #0b7fd7 100%
+    );
+
+    border-bottom:1px solid #2b86d0;
+
+}
+
+.panel h2::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:4%;
+
+    top:1px;
+
+    width:92%;
+
+    height:45%;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,0)
+    );
+
+    opacity:.55;
+
+}
+
+/*=========================
+ Conteúdo interno
+=========================*/
+
+.panel-content{
+
+    padding:15px;
+
+}
+
+/*=========================
+ Hero
+=========================*/
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    border-radius:12px;
+
+    background:
+
+    linear-gradient( to bottom, rgba(175, 244, 255, 0.97), rgba(151, 222, 255, 0.94) );
+
+    border:1px solid #009dff;
+
+    backdrop-filter:blur(2px);
+
+    box-shadow:
+
+        inset 0 1px white,
+
+        0 2px 8px rgba(0,140,200,.08);
+
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:3%;
+
+    top:1px;
+
+    width:94%;
+
+    height:48%;
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(255,255,255,.92),
+        rgba(255,255,255,0)
+    );
+
+}
+
+.hero h2{
+
+    position:relative;
+
+    font-size:32px;
+
+    font-weight:300;
+
+    color:#0b73bf;
+
+}
+
+.hero p{
+
+    position:relative;
+
+    margin-top:10px;
+
+    color:#5f788d;
+
+    line-height:1.8;
+
+}
+
+/*=========================
+ Lista lateral
+=========================*/
+
+.category-list{
+
+    list-style:none;
+
+}
+
+.category-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 12px;
+
+    border-bottom:1px solid #edf6fb;
+
+    transition:.15s;
+
+}
+
+.category-list li:last-child{
+
+    border-bottom:none;
+
+}
+
+.category-list li:hover{
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #ffffff,
+        #eef9ff
+    );
+
+}
+
+.category-list img{
+
+    width:24px;
+
+    height:24px;
+
+}
+
+.category-list a{
+
+    font-weight:600;
+
+    color:#2f6187;
+
+}
+
+/*=========================
+ Estatísticas
+=========================*/
+
+.stats{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.stats p{
+
+    padding:9px 10px;
+
+    background:#f8fdff;
+
+    border:1px solid #e2f2fb;
+
+    border-radius:6px;
+
+    color:#5e778c;
+
+}
+
+/*=========================
+ Membros online
+=========================*/
+
+.online-users{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.online-users p{
+
+    padding:9px 10px;
+
+    border-radius:6px;
+
+    background:#f8fdff;
+
+    border:1px solid #e2f2fb;
+
+    color:#5d768b;
+
+}
+
+/*==================================================
+ Pendrive Forum
+ style.css
+ Parte 3
+==================================================*/
+
+/*=========================
+ Área dos tópicos
+=========================*/
+
+.forum-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+/*=========================
+ Cabeçalho da seção
+=========================*/
+
+.section-title{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    border:1px solid #2f84cf;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #bfe9ff 0%,
+        #49c5ff 55%,
+        #1ea0ff 55%,
+        #0c7fd5 100%
+    );
+
+    text-shadow:0 1px rgba(0,0,0,.25);
+
+}
+
+.section-title::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:1px;
+    left:4%;
+
+    width:92%;
+    height:45%;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,0)
+    );
+
+    opacity:.55;
+
+}
+
+.section-title h2{
+
+    position:relative;
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+/*=========================
+ Botão Novo Tópico
+=========================*/
+
+.new-topic{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:8px 18px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:600;
+
+    border:1px solid #398531;
+
+    background:
+
+    linear-gradient( to bottom, #d8ffd2 0%, #46d84c 55%, #16b51d 55%, #2d7d2b 100% );
+
+    text-shadow:0 1px rgba(0,0,0,.25);
+
+}
+
+.new-topic::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:5%;
+    top:1px;
+
+    width:90%;
+    height:45%;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,0)
+    );
+
+}
+
+/*=========================
+ Lista dos tópicos
+=========================*/
+
+.topic-card{
+
+    display:grid;
+
+    grid-template-columns:
+
+        58px
+        minmax(260px,1fr)
+        95px
+        110px
+        180px;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px;
+
+    border:1px solid #c8e5f7;
+
+    border-radius:10px;
+
+    background:white;
+
+    transition:.15s;
+
+}
+
+.topic-card:nth-child(even){
+
+    background:#fff;
+
+}
+
+.topic-card:hover{
+
+    border-color:#97d8ff;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #ffffff,
+        #edfaff
+    );
+
+}
+
+/*=========================
+ Ícone
+=========================*/
+
+.topic-icon{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+}
+
+/*=========================
+ Informações
+=========================*/
+
+.topic-info{
+
+    min-width:0;
+
+}
+
+.topic-info h3{
+
+    margin-bottom:5px;
+
+}
+
+.topic-info a{
+
+    color:#0c72bc;
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+.topic-info a:hover{
+
+    text-decoration:underline;
+
+}
+
+.topic-info p{
+
+    font-size:13px;
+
+    color:#718798;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+/*=========================
+ Estatísticas
+=========================*/
+
+.topic-stats{
+
+    text-align:center;
+
+}
+
+.topic-stats strong{
+
+    display:block;
+
+    font-size:19px;
+
+    color:#0c73be;
+
+}
+
+.topic-stats small{
+
+    color:#7b91a0;
+
+    font-size:12px;
+
+}
+
+/*=========================
+ Última resposta
+=========================*/
+
+.last-post{
+
+    text-align:right;
+
+}
+
+.last-post strong{
+
+    color:#0b72bc;
+
+    font-size:14px;
+
+}
+
+.last-post p{
+
+    margin-top:4px;
+
+    color:#5f7687;
+
+    font-size:13px;
+
+}
+
+.last-post small{
+
+    color:#8197a5;
+
+    font-size:12px;
+
+}
+
+/*=========================
+ Separação
+=========================*/
+
+.topic-card + .topic-card{
+
+    margin-top:-4px;
+
+}
+
+/*==================================================
+ Pendrive Forum
+ style.css
+ Parte 4
+==================================================*/
+
+/*=========================
+ Categorias
+=========================*/
+
+.category-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.category-card{
+
+    display:grid;
+
+    grid-template-columns:
+        60px
+        minmax(250px,1fr)
+        100px
+        100px
+        180px;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:14px;
+
+    background:#ffffff;
+
+    border:1px solid #c8e4f5;
+
+    border-radius:10px;
+
+    transition:.15s;
+
+}
+
+.category-card:nth-child(even){
+
+    background:#f9fdff;
+
+}
+
+.category-card:hover{
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #ffffff,
+        #eefaff
+    );
+
+    border-color:#8fd8ff;
+
+}
+
+.category-card img{
+
+    width:42px;
+
+    height:42px;
+
+}
+
+.category-card h3{
+
+    color:#0b72bd;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-bottom:4px;
+
+}
+
+.category-card p{
+
+    color:#6d8597;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+}
+
+/*=========================
+ Rodapé
+=========================*/
+
+footer{
+
+    width:min(1400px,96%);
+
+    margin:25px auto;
+
+    background:#ffffff;
+
+    border:1px solid #c5e2f4;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        inset 0 1px white,
+
+        0 2px 8px rgba(0,120,180,.08);
+
+}
+
+.footer-top{
+
+    height:8px;
+
+    background:
+
+    linear-gradient(
+        to right,
+        #22a9ff,
+        #4fd85d,
+        #ffe86a,
+        #ff9e4d,
+        #22a9ff
+    );
+
+}
+
+.footer-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    padding:18px;
+
+}
+
+.footer-content h3{
+
+    color:#0b72bc;
+
+    font-weight:300;
+
+    margin-bottom:5px;
+
+}
+
+.footer-content p{
+
+    color:#728796;
+
+    line-height:1.6;
+
+}
+
+/*=========================
+ Scrollbar
+=========================*/
+
+::-webkit-scrollbar{
+
+    width:12px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eefbff;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        #bfe9ff 0%,
+        #46c4ff 55%,
+        #219fff 55%,
+        #0d7ed4 100%
+    );
+
+}
+
+/*=========================
+ Seleção
+=========================*/
+
+::selection{
+
+    background:#8cddff;
+
+    color:#05314f;
+
+}
+
+/*=========================
+ Responsividade
+=========================*/
+
+@media (max-width:1200px){
+
+    .wrapper{
+
+        grid-template-columns:250px 1fr;
+
+    }
+
+}
+
+@media (max-width:900px){
+
+    .wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .sidebar{
+
+        order:2;
+
+    }
+
+    .content{
+
+        order:1;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .logo-area{
+
+        justify-content:center;
+
+    }
+
+    .user-buttons{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+    .navbar{
+
+        justify-content:flex-start;
+
+        overflow-x:auto;
+
+        flex-wrap:nowrap;
+
+    }
+
+    .topic-card{
+
+        grid-template-columns:
+            60px
+            1fr;
+
+    }
+
+    .topic-stats,
+
+    .last-post{
+
+        grid-column:2;
+
+        text-align:left;
+
+    }
+
+    .category-card{
+
+        grid-template-columns:
+            60px
+            1fr;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .wrapper{
+
+        width:98%;
+
+    }
+
+    .logo{
+
+        width:56px;
+
+    }
+
+    .logo-text h1{
+
+        font-size:26px;
+
+    }
+
+    .logo-text p{
+
+        font-size:14px;
+
+    }
+
+    .user-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .glass-button{
+
+        width:100%;
+
+    }
+
+    .topic-card,
+
+    .category-card{
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .topic-icon{
+
+        align-self:center;
+
+    }
+
+    .topic-stats{
+
+        width:100%;
+
+        display:flex;
+
+        justify-content:space-around;
+
+    }
+
+    .last-post{
+
+        text-align:left;
+
+    }
+
+    .footer-content{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
