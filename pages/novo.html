@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Novo Tópico - Pendrive Forum</title>
+
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="topbar">
+
+<div class="logo-area">
+
+<img src="../assets/logo.png" class="logo">
+
+<div class="logo-text">
+
+<h1>Pendrive Forum</h1>
+<p>Conectando gerações da tecnologia.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="wrapper">
+
+<main class="content">
+
+<div class="panel">
+
+<h2>Novo Tópico</h2>
+
+<div class="panel-content">
+
+<form id="novoTopicoForm">
+
+<label>Título</label>
+
+<input
+type="text"
+id="titulo"
+maxlength="120"
+required>
+
+<br><br>
+
+<label>Categoria</label>
+
+<select id="categoria" required>
+
+<option value="">Selecione...</option>
+
+<option value="Computadores">Computadores</option>
+<option value="Celulares">Celulares</option>
+<option value="Multimídia">Multimídia</option>
+<option value="Sistemas">Sistemas</option>
+<option value="Empresas Tech">Empresas Tech</option>
+<option value="Games">Games</option>
+<option value="Internet">Internet</option>
+<option value="Livre">Livre</option>
+
+</select>
+
+<br><br>
+
+<label>Mensagem</label>
+
+<textarea
+
+id="mensagem"
+
+rows="12"
+
+required
+
+></textarea>
+
+<br><br>
+
+<button
+
+type="submit"
+
+class="glass-button green">
+
+Publicar Tópico
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script type="module">
+
+import { criarTopico } from "../firebase.js";
+
+const form=document.getElementById("novoTopicoForm");
+
+form.addEventListener("submit",async(e)=>{
+
+    e.preventDefault();
+
+    try{
+
+        await criarTopico(
+
+            document.getElementById("titulo").value,
+
+            document.getElementById("categoria").value,
+
+            document.getElementById("mensagem").value
+
+        );
+
+        alert("Tópico publicado!");
+
+        window.location="../index.html";
+
+    }
+
+    catch(erro){
+
+        console.error(erro);
+
+        alert("Não foi possível publicar.");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
