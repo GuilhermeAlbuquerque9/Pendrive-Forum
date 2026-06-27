@@ -31,6 +31,22 @@ import {
 
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
+import {
+
+    collection,
+    addDoc,
+    doc,
+    getDoc,
+    getDocs,
+    updateDoc,
+    increment,
+    query,
+    where,
+    orderBy,
+    serverTimestamp
+
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
 /* ============================
    Cadastro
 ============================ */
@@ -127,26 +143,18 @@ export async function obterUsuario(){
 
 export async function criarTopico(titulo,categoria,mensagem){
 
-    if(!auth.currentUser){
-
-        throw new Error("Usuário não autenticado.");
-
-    }
+    if(!auth.currentUser) throw new Error("Usuário não autenticado.");
 
     const usuario = await obterUsuario();
 
     await addDoc(collection(db,"topicos"),{
 
-        titulo:titulo.trim(),
-
-        categoria:categoria,
-
-        mensagem:mensagem.trim(),
+        titulo,
+        categoria,
+        mensagem,
 
         autor:usuario.nome,
-
         autorUID:auth.currentUser.uid,
-
         cargo:usuario.cargo,
 
         data:serverTimestamp(),
@@ -155,20 +163,130 @@ export async function criarTopico(titulo,categoria,mensagem){
 
         visualizacoes:0,
 
+        gostos:usuario.gostos ?? 0,
+
         reacoes:{
-
             curtir:0,
-
             gostei:0,
-
             engraçado:0,
-
             impressionante:0,
-
             util:0
-
         }
 
     });
+
+}
+
+/* =======================
+  Carregar tópico
+======================== */
+
+export async function carregarTopico(id){
+
+    const documento = await getDoc(
+        doc(db,"topicos",id)
+    );
+
+    return documento.data();
+
+}
+
+/* =====================
+  Visualização
+======================= */
+
+export async function adicionarVisualizacao(id){
+
+    await updateDoc(
+
+        doc(db,"topicos",id),
+
+        {
+
+            visualizacoes:increment(1)
+
+        }
+
+    );
+
+}
+
+/* =======================
+  Responder tópico
+========================= */
+
+export async function responderTopico(id,mensagem){
+
+    if(!auth.currentUser){
+
+        throw new Error("Faça login.");
+
+    }
+
+    const usuario = await obterUsuario();
+
+    await addDoc(collection(db,"respostas"),{
+
+        topico:id,
+
+        mensagem,
+
+        autor:usuario.nome,
+
+        autorUID:auth.currentUser.uid,
+
+        cargo:usuario.cargo,
+
+        data:serverTimestamp()
+
+    });
+
+    await updateDoc(
+
+        doc(db,"topicos",id),
+
+        {
+
+            respostas:increment(1)
+
+        }
+
+    );
+
+}
+
+/* ======================
+   Carregar respostas
+======================= */
+
+export async function carregarRespostas(id){
+
+    const consulta=query(
+
+        collection(db,"respostas"),
+
+        where("topico","==",id),
+
+        orderBy("data")
+
+    );
+
+    const snapshot=await getDocs(consulta);
+
+    const respostas=[];
+
+    snapshot.forEach((doc)=>{
+
+        respostas.push({
+
+            id:doc.id,
+
+            ...doc.data()
+
+        });
+
+    });
+
+    return respostas;
 
 }
