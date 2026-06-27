@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tópico - Pendrive Forum</title>
+
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="topbar">
+
+<div class="logo-area">
+
+<img src="../assets/logo.png" class="logo">
+
+<div class="logo-text">
+
+<h1>Pendrive Forum</h1>
+<p>Conectando gerações da tecnologia.</p>
+
+</div>
+
+</div>
+
+<div class="user-buttons">
+
+<a href="../index.html" class="glass-button">
+🏠 Início
+</a>
+
+<a href="novo.html" class="glass-button green">
+✏️ Novo tópico
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="wrapper">
+
+<main class="content">
+
+<div class="panel">
+
+<h2 id="categoria">
+Categoria
+</h2>
+
+<div class="panel-content">
+
+<h1 id="titulo">
+
+Carregando...
+
+</h1>
+
+<br>
+
+<div class="topic-post">
+
+<div class="author-card">
+
+<h3 id="autor">
+
+Usuário
+
+</h3>
+
+<p id="cargo">
+
+👤 Membro
+
+</p>
+
+<br>
+
+<p>
+
+📅
+<span id="data">
+--
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+❤️ Gostos:
+<span id="gostos">
+
+0
+
+</span>
+
+</p>
+
+</div>
+
+<div class="post-content">
+
+<div id="mensagem">
+
+Carregando mensagem...
+
+</div>
+
+<br>
+
+<div class="reacoes">
+
+<button class="glass-button">
+
+👍 <span id="curtir">0</span>
+
+</button>
+
+<button class="glass-button">
+
+❤️ <span id="gostei">0</span>
+
+</button>
+
+<button class="glass-button">
+
+😂 <span id="engracado">0</span>
+
+</button>
+
+<button class="glass-button">
+
+🤯 <span id="impressionante">0</span>
+
+</button>
+
+<button class="glass-button">
+
+💡 <span id="util">0</span>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>💬 Respostas</h2>
+
+<div class="panel-content">
+
+<div id="listaRespostas">
+
+<!-- As respostas serão carregadas aqui -->
+
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>Responder</h2>
+
+<div class="panel-content">
+
+<form id="respostaForm">
+
+<textarea
+
+id="resposta"
+
+rows="8"
+
+placeholder="Escreva sua resposta..."
+
+required
+
+></textarea>
+
+<br><br>
+
+<button
+
+type="submit"
+
+class="glass-button green">
+
+Responder
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script type="module">
+
+import {
+
+    carregarTopico,
+
+    carregarRespostas,
+
+    responderTopico,
+
+    adicionarVisualizacao
+
+} from "../firebase.js";
+
+/* ===========================
+   ID do tópico
+=========================== */
+
+const parametros = new URLSearchParams(window.location.search);
+
+const id = parametros.get("id");
+
+/* ===========================
+   Incrementa visualização
+=========================== */
+
+await adicionarVisualizacao(id);
+
+/* ===========================
+   Carrega tópico
+=========================== */
+
+const topico = await carregarTopico(id);
+
+document.getElementById("categoria").textContent =
+topico.categoria;
+
+document.getElementById("titulo").textContent =
+topico.titulo;
+
+document.getElementById("autor").textContent =
+topico.autor;
+
+document.getElementById("cargo").textContent =
+topico.cargo;
+
+document.getElementById("mensagem").textContent =
+topico.mensagem;
+
+document.getElementById("curtir").textContent =
+topico.reacoes.curtir;
+
+document.getElementById("gostei").textContent =
+topico.reacoes.gostei;
+
+document.getElementById("engracado").textContent =
+topico.reacoes.engraçado;
+
+document.getElementById("impressionante").textContent =
+topico.reacoes.impressionante;
+
+document.getElementById("util").textContent =
+topico.reacoes.util;
+
+/* ===========================
+   Data
+=========================== */
+
+if(topico.data){
+
+    const data = topico.data.toDate();
+
+    document.getElementById("data").textContent =
+    data.toLocaleString("pt-BR");
+
+}
+
+/* ===========================
+   Gostos
+=========================== */
+
+document.getElementById("gostos").textContent =
+topico.gostos ?? 0;
+
+/* ===========================
+   Respostas
+=========================== */
+
+await carregarRespostas(id);
+
+</script>
+
+<script type="module">
+
+const listaRespostas = document.getElementById("listaRespostas");
+
+const respostas = await carregarRespostas(id);
+
+listaRespostas.innerHTML = "";
+
+respostas.forEach((resposta)=>{
+
+    const div = document.createElement("div");
+
+    div.className = "topic-card";
+
+    div.innerHTML = `
+
+        <div class="topic-icon">
+
+            👤
+
+        </div>
+
+        <div class="topic-info">
+
+            <h3>${resposta.autor}</h3>
+
+            <p>${resposta.cargo}</p>
+
+            <br>
+
+            <div>
+
+                ${resposta.mensagem}
+
+            </div>
+
+        </div>
+
+        <div class="last-post">
+
+            ${resposta.data}
+
+        </div>
+
+    `;
+
+    listaRespostas.appendChild(div);
+
+});
+
+/* ===========================
+   Enviar resposta
+=========================== */
+
+const formulario = document.getElementById("respostaForm");
+
+formulario.addEventListener("submit",async(e)=>{
+
+    e.preventDefault();
+
+    const mensagem = document
+        .getElementById("resposta")
+        .value
+        .trim();
+
+    if(mensagem===""){
+
+        return;
+
+    }
+
+    try{
+
+        await responderTopico(
+
+            id,
+
+            mensagem
+
+        );
+
+        location.reload();
+
+    }
+
+    catch(erro){
+
+        console.error(erro);
+
+        alert("Não foi possível enviar a resposta.");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
