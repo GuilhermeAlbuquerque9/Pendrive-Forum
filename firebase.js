@@ -1,276 +1,65 @@
 // ========================================
 // Pendrive Forum
 // firebase.js
+// Arquivo central
 // ========================================
 
-import { auth, db } from "./firebase-config.js";
+// Configuração do Firebase
 
-import {
+export {
 
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
-    updateProfile
+    app,
 
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+    auth,
 
-import {
+    db
 
-    collection,
-    addDoc,
-    doc,
-    getDoc,
-    getDocs,
-    updateDoc,
-    increment,
-    query,
-    where,
-    orderBy,
-    serverTimestamp
+} from "./firebase-config.js";
 
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+// Autenticação
 
-/* ============================
-   Cadastro
-============================ */
+export {
 
-export async function cadastrar(nome,email,senha){
+    cadastrar,
 
-    const credencial = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        senha
-    );
+    login,
 
-    await updateProfile(credencial.user,{
-        displayName:nome
-    });
+    logout,
 
-    await setDoc(doc(db,"usuarios",credencial.user.uid),{
+    verificarSessao,
 
-        nome:nome,
+    usuarioAtual,
 
-        email:email,
+    obterUsuario,
 
-        cargo:"👤 Membro",
+    atualizarPerfil,
 
-        gostos:0,
+    alterarFoto,
 
-        entrada:new Date(),
+    alterarAssinatura
 
-        online:true,
+} from "./auth.js";
 
-        foto:""
+// Fórum
 
-    });
+export {
 
-}
+    criarTopico,
 
-/* ============================
-   Login
-============================ */
+    carregarTopico,
 
-export async function login(email,senha){
+    adicionarVisualizacao,
 
-    await signInWithEmailAndPassword(
-        auth,
-        email,
-        senha
-    );
+    responderTopico,
 
-}
+    carregarRespostas,
 
-/* ============================
-   Logout
-============================ */
+    reagir,
 
-export async function logout(){
+    listarTopicos,
 
-    await signOut(auth);
+    listarCategoria,
 
-}
+    pesquisarTopicos
 
-/* ============================
-   Sessão
-============================ */
-
-export function verificarSessao(callback){
-
-    onAuthStateChanged(auth,callback);
-
-}
-
-/* ============================
-   Usuário
-============================ */
-
-export async function obterUsuario(){
-
-    if(!auth.currentUser){
-
-        return null;
-
-    }
-
-    const ref = doc(db,"usuarios",auth.currentUser.uid);
-
-    const dados = await getDoc(ref);
-
-    return dados.data();
-
-}
-
-/* ============================
-   Criar Tópico
-============================ */
-
-export async function criarTopico(titulo,categoria,mensagem){
-
-    if(!auth.currentUser) throw new Error("Usuário não autenticado.");
-
-    const usuario = await obterUsuario();
-
-    await addDoc(collection(db,"topicos"),{
-
-        titulo,
-        categoria,
-        mensagem,
-
-        autor:usuario.nome,
-        autorUID:auth.currentUser.uid,
-        cargo:usuario.cargo,
-
-        data:serverTimestamp(),
-
-        respostas:0,
-
-        visualizacoes:0,
-
-        gostos:usuario.gostos ?? 0,
-
-        reacoes:{
-            curtir:0,
-            gostei:0,
-            engraçado:0,
-            impressionante:0,
-            util:0
-        }
-
-    });
-
-}
-
-/* =======================
-  Carregar tópico
-======================== */
-
-export async function carregarTopico(id){
-
-    const documento = await getDoc(
-        doc(db,"topicos",id)
-    );
-
-    return documento.data();
-
-}
-
-/* =====================
-  Visualização
-======================= */
-
-export async function adicionarVisualizacao(id){
-
-    await updateDoc(
-
-        doc(db,"topicos",id),
-
-        {
-
-            visualizacoes:increment(1)
-
-        }
-
-    );
-
-}
-
-/* =======================
-  Responder tópico
-========================= */
-
-export async function responderTopico(id,mensagem){
-
-    if(!auth.currentUser){
-
-        throw new Error("Faça login.");
-
-    }
-
-    const usuario = await obterUsuario();
-
-    await addDoc(collection(db,"respostas"),{
-
-        topico:id,
-
-        mensagem,
-
-        autor:usuario.nome,
-
-        autorUID:auth.currentUser.uid,
-
-        cargo:usuario.cargo,
-
-        data:serverTimestamp()
-
-    });
-
-    await updateDoc(
-
-        doc(db,"topicos",id),
-
-        {
-
-            respostas:increment(1)
-
-        }
-
-    );
-
-}
-
-/* ======================
-   Carregar respostas
-======================= */
-
-export async function carregarRespostas(id){
-
-    const consulta=query(
-
-        collection(db,"respostas"),
-
-        where("topico","==",id),
-
-        orderBy("data")
-
-    );
-
-    const snapshot=await getDocs(consulta);
-
-    const respostas=[];
-
-    snapshot.forEach((doc)=>{
-
-        respostas.push({
-
-            id:doc.id,
-
-            ...doc.data()
-
-        });
-
-    });
-
-    return respostas;
-
-}
+} from "./forum.js";
