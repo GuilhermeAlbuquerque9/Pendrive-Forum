@@ -1,6 +1,7 @@
 // ========================================
 // Pendrive Forum
 // auth.js
+// Parte 1
 // ========================================
 
 import { auth, db } from "./firebase-config.js";
@@ -53,9 +54,19 @@ export async function cadastrar(nome,email,senha){
 
     );
 
+    const ref = doc(
+
+        db,
+
+        "usuarios",
+
+        credencial.user.uid
+
+    );
+
     await setDoc(
 
-        doc(db,"usuarios",credencial.user.uid),
+        ref,
 
         {
 
@@ -65,21 +76,23 @@ export async function cadastrar(nome,email,senha){
 
             cargo:"👤 Membro",
 
-            gostos:0,
-
             foto:"",
 
             assinatura:"",
 
+            gostos:0,
+
             entrada:serverTimestamp(),
 
-            online:true,
+            ultimoLogin:serverTimestamp(),
 
-            ultimoLogin:serverTimestamp()
+            online:true
 
         }
 
     );
+
+    return credencial.user;
 
 }
 
@@ -99,19 +112,67 @@ export async function login(email,senha){
 
     );
 
-    await updateDoc(
+    const ref = doc(
 
-        doc(db,"usuarios",credencial.user.uid),
+        db,
 
-        {
+        "usuarios",
 
-            online:true,
-
-            ultimoLogin:serverTimestamp()
-
-        }
+        credencial.user.uid
 
     );
+
+    const documento = await getDoc(ref);
+
+    if(documento.exists()){
+
+        await updateDoc(
+
+            ref,
+
+            {
+
+                online:true,
+
+                ultimoLogin:serverTimestamp()
+
+            }
+
+        );
+
+    }else{
+
+        await setDoc(
+
+            ref,
+
+            {
+
+                nome:credencial.user.displayName ?? "Usuário",
+
+                email:credencial.user.email,
+
+                cargo:"👤 Membro",
+
+                foto:"",
+
+                assinatura:"",
+
+                gostos:0,
+
+                entrada:serverTimestamp(),
+
+                ultimoLogin:serverTimestamp(),
+
+                online:true
+
+            }
+
+        );
+
+    }
+
+    return credencial.user;
 
 }
 
@@ -123,17 +184,33 @@ export async function logout(){
 
     if(auth.currentUser){
 
-        await updateDoc(
+        const ref = doc(
 
-            doc(db,"usuarios",auth.currentUser.uid),
+            db,
 
-            {
+            "usuarios",
 
-                online:false
-
-            }
+            auth.currentUser.uid
 
         );
+
+        const documento = await getDoc(ref);
+
+        if(documento.exists()){
+
+            await updateDoc(
+
+                ref,
+
+                {
+
+                    online:false
+
+                }
+
+            );
+
+        }
 
     }
 
@@ -147,12 +224,18 @@ export async function logout(){
 
 export function verificarSessao(callback){
 
-    onAuthStateChanged(auth,callback);
+    return onAuthStateChanged(
+
+        auth,
+
+        callback
+
+    );
 
 }
 
 /* ========================================
-   Usuário logado
+   Usuário atual
 ======================================== */
 
 export function usuarioAtual(){
@@ -162,7 +245,7 @@ export function usuarioAtual(){
 }
 
 /* ========================================
-   Dados do usuário
+   Obter dados do usuário
 ======================================== */
 
 export async function obterUsuario(){
@@ -173,11 +256,17 @@ export async function obterUsuario(){
 
     }
 
-    const documento = await getDoc(
+    const ref = doc(
 
-        doc(db,"usuarios",auth.currentUser.uid)
+        db,
+
+        "usuarios",
+
+        auth.currentUser.uid
 
     );
+
+    const documento = await getDoc(ref);
 
     if(!documento.exists()){
 
@@ -190,7 +279,7 @@ export async function obterUsuario(){
 }
 
 /* ========================================
-   Atualizar Perfil
+   Atualizar perfil
 ======================================== */
 
 export async function atualizarPerfil(dados){
@@ -203,7 +292,15 @@ export async function atualizarPerfil(dados){
 
     await updateDoc(
 
-        doc(db,"usuarios",auth.currentUser.uid),
+        doc(
+
+            db,
+
+            "usuarios",
+
+            auth.currentUser.uid
+
+        ),
 
         dados
 
@@ -212,53 +309,57 @@ export async function atualizarPerfil(dados){
 }
 
 /* ========================================
-   Alterar Foto
+   Alterar foto
 ======================================== */
 
 export async function alterarFoto(url){
 
-    if(!auth.currentUser){
+    await atualizarPerfil({
 
-        return;
+        foto:url
 
-    }
-
-    await updateDoc(
-
-        doc(db,"usuarios",auth.currentUser.uid),
-
-        {
-
-            foto:url
-
-        }
-
-    );
+    });
 
 }
 
 /* ========================================
-   Alterar Assinatura
+   Alterar assinatura
 ======================================== */
 
 export async function alterarAssinatura(texto){
 
-    if(!auth.currentUser){
+    await atualizarPerfil({
 
-        return;
+        assinatura:texto
+
+    });
+
+}
+
+/* ========================================
+   Nome do usuário logado
+======================================== */
+
+export async function nomeUsuarioLogado(){
+
+    const usuario = await obterUsuario();
+
+    if(!usuario){
+
+        return null;
 
     }
 
-    await updateDoc(
+    return usuario.nome;
 
-        doc(db,"usuarios",auth.currentUser.uid),
+}
 
-        {
+/* ========================================
+   Está logado?
+======================================== */
 
-            assinatura:texto
+export function estaLogado(){
 
-        }
-
-    );
+    return auth.currentUser !== null;
 
 }
