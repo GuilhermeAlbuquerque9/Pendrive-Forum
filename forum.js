@@ -1,6 +1,7 @@
 // ========================================
 // Pendrive Forum
 // forum.js
+// Parte 1
 // ========================================
 
 import { auth, db } from "./firebase-config.js";
@@ -60,6 +61,8 @@ export async function criarTopico(titulo,categoria,mensagem){
 
             visualizacoes:0,
 
+            ultimaResposta:null,
+
             reacoes:{
 
                 curtir:0,
@@ -111,7 +114,77 @@ export async function carregarTopico(id){
 }
 
 /* ========================================
-   Visualização
+   Listar tópicos
+======================================== */
+
+export async function listarTopicos(){
+
+    const consulta=query(
+
+        collection(db,"topicos"),
+
+        orderBy("data","desc")
+
+    );
+
+    const snapshot=await getDocs(consulta);
+
+    const lista=[];
+
+    snapshot.forEach((documento)=>{
+
+        lista.push({
+
+            id:documento.id,
+
+            ...documento.data()
+
+        });
+
+    });
+
+    return lista;
+
+}
+
+/* ========================================
+   Listar categoria
+======================================== */
+
+export async function listarCategoria(categoria){
+
+    const consulta=query(
+
+        collection(db,"topicos"),
+
+        where("categoria","==",categoria),
+
+        orderBy("data","desc")
+
+    );
+
+    const snapshot=await getDocs(consulta);
+
+    const lista=[];
+
+    snapshot.forEach((documento)=>{
+
+        lista.push({
+
+            id:documento.id,
+
+            ...documento.data()
+
+        });
+
+    });
+
+    return lista;
+
+}
+
+/* ========================================
+   Visualizações
 ======================================== */
 
 export async function adicionarVisualizacao(id){
@@ -172,7 +245,9 @@ export async function responderTopico(id,mensagem){
 
         {
 
-            respostas:increment(1)
+            respostas:increment(1),
+
+            ultimaResposta:serverTimestamp()
 
         }
 
@@ -198,11 +273,11 @@ export async function carregarRespostas(id){
 
     const snapshot=await getDocs(consulta);
 
-    const lista=[];
+    const respostas=[];
 
     snapshot.forEach((documento)=>{
 
-        lista.push({
+        respostas.push({
 
             id:documento.id,
 
@@ -212,7 +287,7 @@ export async function carregarRespostas(id){
 
     });
 
-    return lista;
+    return respostas;
 
 }
 
@@ -239,22 +314,70 @@ export async function reagir(id,reacao){
 }
 
 /* ========================================
-   Listar tópicos
+   Total de tópicos
 ======================================== */
 
-export async function listarTopicos(){
+export async function totalTopicos(){
 
-    const consulta=query(
+    const snapshot = await getDocs(
 
-        collection(db,"topicos"),
-
-        orderBy("data","desc")
+        collection(db,"topicos")
 
     );
 
-    const snapshot=await getDocs(consulta);
+    return snapshot.size;
 
-    const lista=[];
+}
+
+/* ========================================
+   Total de respostas
+======================================== */
+
+export async function totalRespostas(){
+
+    const snapshot = await getDocs(
+
+        collection(db,"respostas")
+
+    );
+
+    return snapshot.size;
+
+}
+
+/* ========================================
+   Total de membros
+======================================== */
+
+export async function totalMembros(){
+
+    const snapshot = await getDocs(
+
+        collection(db,"usuarios")
+
+    );
+
+    return snapshot.size;
+
+}
+
+/* ========================================
+   Membros online
+======================================== */
+
+export async function membrosOnline(){
+
+    const consulta = query(
+
+        collection(db,"usuarios"),
+
+        where("online","==",true)
+
+    );
+
+    const snapshot = await getDocs(consulta);
+
+    const lista = [];
 
     snapshot.forEach((documento)=>{
 
@@ -273,47 +396,145 @@ export async function listarTopicos(){
 }
 
 /* ========================================
-   Listar tópicos por categoria
+   Total online
 ======================================== */
 
-export async function listarCategoria(categoria){
+export async function totalOnline(){
 
-    const consulta=query(
+    const lista = await membrosOnline();
 
-        collection(db,"topicos"),
-
-        where("categoria","==",categoria),
-
-        orderBy("data","desc")
-
-    );
-
-    const snapshot=await getDocs(consulta);
-
-    const lista=[];
-
-    snapshot.forEach((documento)=>{
-
-        lista.push({
-
-            id:documento.id,
-
-            ...documento.data()
-
-        });
-
-    });
-
-    return lista;
+    return lista.length;
 
 }
 
 /* ========================================
-   Pesquisar
+   Pesquisar tópicos
 ======================================== */
 
-export async function pesquisarTopicos(){
+export async function pesquisarTopicos(texto){
 
-    return await listarTopicos();
+    const lista = await listarTopicos();
+
+    if(!texto){
+
+        return lista;
+
+    }
+
+    const pesquisa = texto.toLowerCase();
+
+    return lista.filter((topico)=>{
+
+        return(
+
+            topico.titulo
+
+                .toLowerCase()
+
+                .includes(pesquisa)
+
+            ||
+
+            topico.mensagem
+
+                .toLowerCase()
+
+                .includes(pesquisa)
+
+            ||
+
+            topico.autor
+
+                .toLowerCase()
+
+                .includes(pesquisa)
+
+            ||
+
+            topico.categoria
+
+                .toLowerCase()
+
+                .includes(pesquisa)
+
+        );
+
+    });
 
 }
+
+/* ========================================
+   Estatísticas completas
+======================================== */
+
+export async function obterEstatisticas(){
+
+    return{
+
+        topicos:await totalTopicos(),
+
+        respostas:await totalRespostas(),
+
+        membros:await totalMembros(),
+
+        online:await totalOnline()
+
+    };
+
+}
+
+/* ========================================
+   Atualizar presença
+======================================== */
+
+export async function definirOnline(status){
+
+    if(!auth.currentUser){
+
+        return;
+
+    }
+
+    await updateDoc(
+
+        doc(
+
+            db,
+
+            "usuarios",
+
+            auth.currentUser.uid
+
+        ),
+
+        {
+
+            online:status
+
+        }
+
+    );
+
+}
+
+/* ========================================
+   Registrar saída automática
+======================================== */
+
+window.addEventListener(
+
+    "beforeunload",
+
+    async ()=>{
+
+        try{
+
+            await definirOnline(false);
+
+        }
+
+        catch(e){}
+
+    }
+
+);
