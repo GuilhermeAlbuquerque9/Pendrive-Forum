@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
@@ -16,73 +17,126 @@
 
 <header>
 
-    <div class="topbar">
+<div class="topbar">
 
-        <div class="logo-area">
+<div class="logo-area">
 
-            <img src="assets/logo.png" alt="Pendrive Forum" class="logo">
+<img
+src="assets/logo.png"
+alt="Pendrive Forum"
+class="logo">
 
-            <div class="logo-text">
+<div class="logo-text">
 
-                <h1>Pendrive Forum</h1>
-                <p>Conectando gerações da tecnologia.</p>
+<h1>Pendrive Forum</h1>
 
-            </div>
+<p>
 
-        </div>
+Conectando gerações da tecnologia.
 
-        <div class="user-buttons">
+</p>
 
-            <a href="pages/login.html" class="glass-button">
-                Entrar
-            </a>
+</div>
 
-            <a href="pages/cadastro.html" class="glass-button blue">
-                Registrar
-            </a>
+</div>
 
-        </div>
+<!-- Área controlada pelo Firebase -->
 
-    </div>
+<div
+
+class="user-buttons"
+
+id="userButtons"
+
+>
+
+<a
+
+href="pages/login.html"
+
+class="glass-button"
+
+>
+
+Entrar
+
+</a>
+
+<a
+
+href="pages/cadastro.html"
+
+class="glass-button green"
+
+>
+
+Registrar
+
+</a>
+
+</div>
+
+</div>
 
 </header>
 
 <nav class="navbar">
 
-    <a href="#">
-        <img src="assets/icons/home.ico">
-        <span>Início</span>
-    </a>
+<a href="index.html">
 
-    <a href="#">
-        <img src="assets/icons/forum.ico">
-        <span>Fórum</span>
-    </a>
+<img src="assets/icons/home.ico">
 
-    <a href="#">
-        <img src="assets/icons/search.ico">
-        <span>Pesquisar</span>
-    </a>
+<span>Início</span>
 
-    <a href="#">
-        <img src="assets/icons/members.ico">
-        <span>Membros</span>
-    </a>
+</a>
 
-    <a href="#">
-        <img src="assets/icons/calendar.ico">
-        <span>Calendário</span>
-    </a>
+<a href="#forum">
 
-    <a href="#">
-        <img src="assets/icons/help.ico">
-        <span>Ajuda</span>
-    </a>
+<img src="assets/icons/forum.ico">
 
-    <a href="#">
-        <img src="assets/icons/rules.ico">
-        <span>Regras</span>
-    </a>
+<span>Fórum</span>
+
+</a>
+
+<a href="#pesquisa">
+
+<img src="assets/icons/search.ico">
+
+<span>Pesquisar</span>
+
+</a>
+
+<a href="#membros">
+
+<img src="assets/icons/members.ico">
+
+<span>Membros</span>
+
+</a>
+
+<a href="#calendario">
+
+<img src="assets/icons/calendar.ico">
+
+<span>Calendário</span>
+
+</a>
+
+<a href="#ajuda">
+
+<img src="assets/icons/help.ico">
+
+<span>Ajuda</span>
+
+</a>
+
+<a href="#regras">
+
+<img src="assets/icons/rules.ico">
+
+<span>Regras</span>
+
+</a>
 
 </nav>
 
@@ -97,43 +151,67 @@
 <ul class="category-list">
 
 <li>
+
 <img src="assets/icons/computers.ico">
+
 <a href="#">Computadores</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/phones.png">
+
 <a href="#">Celulares</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/multimedia.ico">
+
 <a href="#">Multimídia</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/systems.ico">
+
 <a href="#">Sistemas</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/companies.ico">
+
 <a href="#">Empresas Tech</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/games.ico">
+
 <a href="#">Games</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/internet.ico">
+
 <a href="#">Internet</a>
+
 </li>
 
 <li>
+
 <img src="assets/icons/free.ico">
+
 <a href="#">Livre</a>
+
 </li>
 
 </ul>
@@ -146,10 +224,53 @@
 
 <div class="stats">
 
-<p><strong>Tópicos:</strong> 0</p>
-<p><strong>Mensagens:</strong> 0</p>
-<p><strong>Membros:</strong> 1</p>
-<p><strong>Recorde Online:</strong> 1</p>
+<p>
+
+<strong>Tópicos:</strong>
+
+<span id="totalTopicos">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+<strong>Mensagens:</strong>
+
+<span id="totalMensagens">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+<strong>Membros:</strong>
+
+<span id="totalMembros">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+<strong>Online:</strong>
+
+<span id="onlineAgora">
+
+0
+
+</span>
+
+</p>
 
 </div>
 
@@ -159,9 +280,19 @@
 
 <h2>Membros Online</h2>
 
-<div class="online-users">
+<div
 
-<p>Nenhum membro online.</p>
+class="online-users"
+
+id="onlineUsers"
+
+>
+
+<p>
+
+Carregando...
+
+</p>
 
 </div>
 
@@ -173,163 +304,353 @@
 
 <section class="hero">
 
-<h2>Bem-vindo ao Pendrive Forum!</h2>
+<h2>
+
+Bem-vindo ao Pendrive Forum!
+
+</h2>
 
 <p>
-Um espaço tranquilo para conversar sobre computadores, celulares,
-games, internet, sistemas e toda a tecnologia que marcou gerações.
+
+Um espaço tranquilo para conversar sobre computadores,
+celulares, games, internet, sistemas e toda a tecnologia
+que marcou gerações.
+
 </p>
 
 </section>
-<section class="forum-list">
 
-    <div class="section-title">
+<section class="forum-list" id="forum">
 
-        <h2>📌 Tópicos Recentes</h2>
+<div class="section-title">
 
-        <a href="pages/novo.html" class="new-topic">
-            + Novo Tópico
-        </a>
+<h2>
 
-    </div>
+📌 Tópicos Recentes
 
-    <div class="topic-card">
+</h2>
 
-        <div class="topic-icon">
-            💻
-        </div>
+<a
 
-        <div class="topic-info">
+href="pages/novo.html"
 
-            <h3>
-                <a href="pages/topico.html">
-                    Bem-vindo ao Pendrive Forum!
-                </a>
-            </h3>
+class="new-topic"
 
-            <p>
-                Criado por <strong>Administrador</strong>
-                • Hoje às 12:00
-            </p>
+id="novoTopicoBtn"
 
-        </div>
+>
 
-        <div class="topic-stats">
++ Novo Tópico
 
-            <div>
-                <span>💬</span>
-                <strong>0</strong>
-                <small>Respostas</small>
-            </div>
+</a>
 
-            <div>
-                <span>👁️</span>
-                <strong>1</strong>
-                <small>Visualizações</small>
-            </div>
+</div>
 
-        </div>
+<!-- Lista carregada pelo Firebase -->
 
-        <div class="last-post">
+<div id="listaTopicos">
 
-            <strong>Última resposta</strong>
+<div class="topic-card">
 
-            <p>
-                Administrador
-            </p>
+<div class="topic-icon">
 
-            <small>
-                Hoje às 12:00
-            </small>
+💾
 
-        </div>
+</div>
 
-    </div>
+<div class="topic-info">
+
+<h3>
+
+Carregando tópicos...
+
+</h3>
+
+<p>
+
+Aguarde alguns instantes.
+
+</p>
+
+</div>
+
+<div class="topic-stats">
+
+<div>
+
+<strong>
+
+...
+
+</strong>
+
+<small>
+
+Respostas
+
+</small>
+
+</div>
+
+<div>
+
+<strong>
+
+...
+
+</strong>
+
+<small>
+
+Visualizações
+
+</small>
+
+</div>
+
+</div>
+
+<div class="last-post">
+
+<strong>
+
+Carregando...
+
+</strong>
+
+<p>
+
+&nbsp;
+
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 <section class="forum-list">
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>🔥 Categorias</h2>
+<h2>
 
-    </div>
+🔥 Categorias
 
-    <div class="category-grid">
+</h2>
 
-        <div class="category-card">
-            <img src="assets/icons/computers.ico">
-            <h3>Computadores</h3>
-            <p>Hardware, notebooks, desktops e upgrades.</p>
-        </div>
+</div>
 
-        <div class="category-card">
-            <img src="assets/icons/phones.png">
-            <h3>Celulares</h3>
-            <p>Smartphones e aparelhos clássicos.</p>
-        </div>
+<div class="category-grid">
 
-        <div class="category-card">
-            <img src="assets/icons/multimedia.ico">
-            <h3>Multimídia</h3>
-            <p>Áudio, vídeo e mídia digital.</p>
-        </div>
+<div class="category-card">
 
-        <div class="category-card">
-            <img src="assets/icons/systems.ico">
-            <h3>Sistemas</h3>
-            <p>Windows, Linux, macOS e outros.</p>
-        </div>
+<img src="assets/icons/computers.ico">
 
-        <div class="category-card">
-            <img src="assets/icons/companies.ico">
-            <h3>Empresas Tech</h3>
-            <p>Microsoft, Apple, Google e outras.</p>
-        </div>
+<div>
 
-        <div class="category-card">
-            <img src="assets/icons/games.ico">
-            <h3>Games</h3>
-            <p>Jogos, consoles e nostalgia.</p>
-        </div>
+<h3>
 
-        <div class="category-card">
-            <img src="assets/icons/internet.ico">
-            <h3>Internet</h3>
-            <p>Sites clássicos, navegadores e web.</p>
-        </div>
+Computadores
 
-        <div class="category-card">
-            <img src="assets/icons/free.ico">
-            <h3>Livre</h3>
-            <p>Assuntos diversos.</p>
-        </div>
+</h3>
 
-    </div>
+<p>
+
+Hardware, desktops, notebooks e upgrades.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/phones.png">
+
+<div>
+
+<h3>
+
+Celulares
+
+</h3>
+
+<p>
+
+Smartphones e aparelhos clássicos.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/multimedia.ico">
+
+<div>
+
+<h3>
+
+Multimídia
+
+</h3>
+
+<p>
+
+Áudio, vídeo e mídia digital.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/systems.ico">
+
+<div>
+
+<h3>
+
+Sistemas
+
+</h3>
+
+<p>
+
+Windows, Linux, macOS e outros.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/companies.ico">
+
+<div>
+
+<h3>
+
+Empresas Tech
+
+</h3>
+
+<p>
+
+Microsoft, Apple, Google e muito mais.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/games.ico">
+
+<div>
+
+<h3>
+
+Games
+
+</h3>
+
+<p>
+
+Jogos, consoles e nostalgia.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/internet.ico">
+
+<div>
+
+<h3>
+
+Internet
+
+</h3>
+
+<p>
+
+Sites clássicos, navegadores e web.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="assets/icons/free.ico">
+
+<div>
+
+<h3>
+
+Livre
+
+</h3>
+
+<p>
+
+Assuntos diversos.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 <section class="forum-info">
 
-    <div class="panel">
+<div class="panel">
 
-        <h2>💾 Sobre o Pendrive Forum</h2>
+<h2>
 
-        <p>
-            O Pendrive Forum é uma comunidade dedicada aos apaixonados por
-            tecnologia de todas as épocas. Nosso objetivo é proporcionar
-            um ambiente seguro, amigável e acolhedor para compartilhar
-            conhecimento, aprender e preservar a história da computação.
-        </p>
+💾 Sobre o Pendrive Forum
 
-    </div>
+</h2>
 
-</section>
+<div class="panel-content">
 
-</main>
+<p>
+
+O Pendrive Forum é uma comunidade dedicada aos apaixonados por tecnologia,
+computação e internet. Nosso objetivo é preservar a história da tecnologia
+em um ambiente seguro, organizado e agradável para todas as idades.
+
+</p>
 
 </div>
+
+</div>
+
+</section>
 
 <footer>
 
@@ -347,9 +668,7 @@ games, internet, sistemas e toda a tecnologia que marcou gerações.
 
         <div class="footer-right">
 
-            <p>
-                © 2026 Pendrive Forum
-            </p>
+            <p>© 2026 Pendrive Forum</p>
 
             <p>
                 Desenvolvido com 💙 usando HTML, CSS, JavaScript e Firebase.
@@ -362,7 +681,234 @@ games, internet, sistemas e toda a tecnologia que marcou gerações.
 </footer>
 
 <script src="script.js"></script>
-<script type="module" src="firebase.js"></script>
+
+<script type="module">
+
+import {
+
+    verificarSessao,
+    obterUsuario,
+    logout
+
+} from "./auth.js";
+
+import {
+
+    listarTopicos
+
+} from "./forum.js";
+
+/* ==========================
+   Usuário logado
+========================== */
+
+const userButtons = document.getElementById("userButtons");
+
+verificarSessao(async(usuario)=>{
+
+    if(!usuario){
+
+        userButtons.innerHTML=`
+
+            <a href="pages/login.html" class="glass-button">
+
+                Entrar
+
+            </a>
+
+            <a href="pages/cadastro.html" class="glass-button green">
+
+                Registrar
+
+            </a>
+
+        `;
+
+        return;
+
+    }
+
+    const dados = await obterUsuario();
+
+    userButtons.innerHTML=`
+
+        <span style="display:flex;align-items:center;font-weight:bold;">
+
+            👤&nbsp;Logado como:&nbsp;<strong>${dados.nome}</strong>
+
+        </span>
+
+        <a href="pages/novo.html" class="glass-button green">
+
+            Novo tópico
+
+        </a>
+
+        <button id="logoutBtn" class="glass-button">
+
+            Sair
+
+        </button>
+
+    `;
+
+    document
+
+        .getElementById("logoutBtn")
+
+        .onclick = async ()=>{
+
+            await logout();
+
+            location.reload();
+
+        };
+
+});
+
+/* ==========================
+   Lista de tópicos
+========================== */
+
+const lista = document.getElementById("listaTopicos");
+
+const topicos = await listarTopicos();
+
+lista.innerHTML = "";
+
+if(topicos.length===0){
+
+    lista.innerHTML=`
+
+        <div class="topic-card">
+
+            <div class="topic-icon">
+
+                📂
+
+            </div>
+
+            <div class="topic-info">
+
+                <h3>
+
+                    Nenhum tópico encontrado.
+
+                </h3>
+
+                <p>
+
+                    Seja o primeiro a criar um tópico!
+
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+topicos.forEach(topico=>{
+
+    const card=document.createElement("div");
+
+    card.className="topic-card";
+
+    const data = topico.data?.toDate
+        ? topico.data.toDate().toLocaleString("pt-BR")
+        : "-";
+
+    card.innerHTML=`
+
+        <div class="topic-icon">
+
+            💾
+
+        </div>
+
+        <div class="topic-info">
+
+            <h3>
+
+                <a href="pages/topico.html?id=${topico.id}">
+
+                    ${topico.titulo}
+
+                </a>
+
+            </h3>
+
+            <p>
+
+                ${topico.autor}
+                •
+                ${data}
+
+            </p>
+
+        </div>
+
+        <div class="topic-stats">
+
+            <div>
+
+                <strong>
+
+                    ${topico.respostas}
+
+                </strong>
+
+                <small>
+
+                    Respostas
+
+                </small>
+
+            </div>
+
+            <div>
+
+                <strong>
+
+                    ${topico.visualizacoes}
+
+                </strong>
+
+                <small>
+
+                    Visualizações
+
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="last-post">
+
+            <strong>
+
+                ${topico.categoria}
+
+            </strong>
+
+        </div>
+
+    `;
+
+    lista.appendChild(card);
+
+});
+
+/* ==========================
+   Estatísticas
+========================== */
+
+document.getElementById("totalTopicos").textContent = topicos.length;
+
+</script>
 
 </body>
 </html>
