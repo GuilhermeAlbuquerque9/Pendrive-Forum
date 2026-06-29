@@ -4,12 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Tópico - Pendrive Forum</title>
 
-<link rel="icon" href="../assets/favicon.png">
-<link rel="stylesheet" href="../style.css">
+<link rel="icon"
+href="../assets/favicon.png">
+
+<link rel="stylesheet"
+href="../style.css">
 
 </head>
 
@@ -21,25 +26,56 @@
 
 <div class="logo-area">
 
-<img src="../assets/logo.png" class="logo">
+<img
+
+src="../assets/logo.png"
+
+class="logo"
+
+alt="Pendrive Forum">
 
 <div class="logo-text">
 
-<h1>Pendrive Forum</h1>
-<p>Conectando gerações da tecnologia.</p>
+<h1>
+
+Pendrive Forum
+
+</h1>
+
+<p>
+
+Conectando gerações da tecnologia.
+
+</p>
 
 </div>
 
 </div>
 
-<div class="user-buttons">
+<div
 
-<a href="../index.html" class="glass-button">
-🏠 Início
+class="user-buttons"
+
+id="userButtons">
+
+<a
+
+href="login.html"
+
+class="glass-button">
+
+Entrar
+
 </a>
 
-<a href="novo.html" class="glass-button green">
-✏️ Novo tópico
+<a
+
+href="cadastro.html"
+
+class="glass-button green">
+
+Registrar
+
 </a>
 
 </div>
@@ -48,6 +84,22 @@
 
 </header>
 
+<nav class="navbar">
+
+<a href="../index.html">
+
+🏠 Início
+
+</a>
+
+<a href="novo.html">
+
+✏️ Novo tópico
+
+</a>
+
+</nav>
+
 <div class="wrapper">
 
 <main class="content">
@@ -55,7 +107,9 @@
 <div class="panel">
 
 <h2 id="categoria">
+
 Categoria
+
 </h2>
 
 <div class="panel-content">
@@ -74,7 +128,7 @@ Carregando...
 
 <h3 id="autor">
 
-Usuário
+...
 
 </h3>
 
@@ -89,8 +143,11 @@ Usuário
 <p>
 
 📅
+
 <span id="data">
+
 --
+
 </span>
 
 </p>
@@ -99,12 +156,31 @@ Usuário
 
 <p>
 
-❤️ Gostos:
-<span id="gostos">
+👁️
+
+<span id="visualizacoes">
 
 0
 
 </span>
+
+visualizações
+
+</p>
+
+<br>
+
+<p>
+
+💬
+
+<span id="respostas">
+
+0
+
+</span>
+
+respostas
 
 </p>
 
@@ -114,7 +190,7 @@ Usuário
 
 <div id="mensagem">
 
-Carregando mensagem...
+Carregando...
 
 </div>
 
@@ -122,33 +198,83 @@ Carregando mensagem...
 
 <div class="reacoes">
 
-<button class="glass-button">
+<button
 
-👍 <span id="curtir">0</span>
+class="glass-button"
 
-</button>
+id="btnCurtir">
 
-<button class="glass-button">
+👍
 
-❤️ <span id="gostei">0</span>
+<span id="curtir">
 
-</button>
+0
 
-<button class="glass-button">
-
-😂 <span id="engracado">0</span>
+</span>
 
 </button>
 
-<button class="glass-button">
+<button
 
-🤯 <span id="impressionante">0</span>
+class="glass-button"
+
+id="btnGostei">
+
+❤️
+
+<span id="gostei">
+
+0
+
+</span>
 
 </button>
 
-<button class="glass-button">
+<button
 
-💡 <span id="util">0</span>
+class="glass-button"
+
+id="btnEngracado">
+
+😂
+
+<span id="engracado">
+
+0
+
+</span>
+
+</button>
+
+<button
+
+class="glass-button"
+
+id="btnImpressionante">
+
+🤯
+
+<span id="impressionante">
+
+0
+
+</span>
+
+</button>
+
+<button
+
+class="glass-button"
+
+id="btnUtil">
+
+💡
+
+<span id="util">
+
+0
+
+</span>
 
 </button>
 
@@ -164,13 +290,41 @@ Carregando mensagem...
 
 <div class="panel">
 
-<h2>💬 Respostas</h2>
+<h2>
+
+💬 Respostas
+
+</h2>
 
 <div class="panel-content">
 
 <div id="listaRespostas">
 
-<!-- As respostas serão carregadas aqui -->
+<div class="topic-card">
+
+<div class="topic-icon">
+
+💾
+
+</div>
+
+<div class="topic-info">
+
+<h3>
+
+Carregando respostas...
+
+</h3>
+
+<p>
+
+Aguarde alguns instantes.
+
+</p>
+
+</div>
+
+</div>
 
 </div>
 
@@ -180,7 +334,11 @@ Carregando mensagem...
 
 <div class="panel">
 
-<h2>Responder</h2>
+<h2>
+
+Responder ao tópico
+
+</h2>
 
 <div class="panel-content">
 
@@ -200,15 +358,31 @@ required
 
 <br><br>
 
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+
 <button
 
 type="submit"
 
 class="glass-button green">
 
-Responder
+💬 Responder
 
 </button>
+
+<button
+
+type="button"
+
+class="glass-button"
+
+id="btnEmoji">
+
+😀 Emoji
+
+</button>
+
+</div>
 
 </form>
 
@@ -218,101 +392,335 @@ Responder
 
 </main>
 
+<aside class="sidebar">
+
+<div class="panel">
+
+<h2>
+
+Autor
+
+</h2>
+
+<div class="stats">
+
+<p>
+
+<strong>
+
+Nome:
+
+</strong>
+
+<span id="autorLateral">
+
+...
+
+</span>
+
+</p>
+
+<p>
+
+<strong>
+
+Cargo:
+
+</strong>
+
+<span id="cargoLateral">
+
+👤 Membro
+
+</span>
+
+</p>
+
+<p>
+
+<strong>
+
+Entrou em:
+
+</strong>
+
+<span id="entradaAutor">
+
+-
+
+</span>
+
+</p>
+
 </div>
+
+</div>
+
+<div class="panel">
+
+<h2>
+
+Informações
+
+</h2>
+
+<div class="stats">
+
+<p>
+
+Categoria:
+
+<br>
+
+<strong id="categoriaLateral">
+
+...
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+Visualizações:
+
+<br>
+
+<strong id="viewsLateral">
+
+0
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+Respostas:
+
+<br>
+
+<strong id="respostasLateral">
+
+0
+
+</strong>
+
+</p>
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+    
+<footer>
+
+<div class="footer-content">
+
+<div class="footer-left">
+
+<h3>
+
+Pendrive Forum
+
+</h3>
+
+<p>
+
+Conectando gerações da tecnologia.
+
+</p>
+
+</div>
+
+<div class="footer-right">
+
+<p>
+
+© 2026 Pendrive Forum
+
+</p>
+
+</div>
+
+</div>
+
+</footer>
 
 <script type="module">
 
 import {
 
+    verificarSessao,
+    obterUsuario,
+    logout
+
+} from "../auth.js";
+
+import {
+
     carregarTopico,
-
     carregarRespostas,
-
     responderTopico,
+    adicionarVisualizacao,
+    reagir
 
-    adicionarVisualizacao
+} from "../forum.js";
 
-} from "../firebase.js";
+/* ===========================
+   Usuário
+=========================== */
+
+const userButtons = document.getElementById("userButtons");
+
+verificarSessao(async(usuario)=>{
+
+    if(!usuario){
+
+        return;
+
+    }
+
+    const dados = await obterUsuario();
+
+    userButtons.innerHTML = `
+
+        <span style="display:flex;align-items:center;font-weight:bold;">
+
+            👤&nbsp;${dados.nome}
+
+        </span>
+
+        <a href="novo.html" class="glass-button green">
+
+            Novo tópico
+
+        </a>
+
+        <button id="logoutBtn" class="glass-button">
+
+            Sair
+
+        </button>
+
+    `;
+
+    document.getElementById("logoutBtn").onclick = async()=>{
+
+        await logout();
+
+        location.href="../index.html";
+
+    };
+
+});
 
 /* ===========================
    ID do tópico
 =========================== */
 
-const parametros = new URLSearchParams(window.location.search);
+const parametros = new URLSearchParams(
+
+    window.location.search
+
+);
 
 const id = parametros.get("id");
 
-/* ===========================
-   Incrementa visualização
-=========================== */
+if(!id){
 
-await adicionarVisualizacao(id);
+    alert("Tópico não encontrado.");
+
+    location.href="../index.html";
+
+    throw new Error("ID inválido.");
+
+}
 
 /* ===========================
    Carrega tópico
 =========================== */
 
+await adicionarVisualizacao(id);
+
 const topico = await carregarTopico(id);
 
-document.getElementById("categoria").textContent =
-topico.categoria;
+if(!topico){
 
-document.getElementById("titulo").textContent =
-topico.titulo;
+    alert("Este tópico não existe.");
 
-document.getElementById("autor").textContent =
-topico.autor;
+    location.href="../index.html";
 
-document.getElementById("cargo").textContent =
-topico.cargo;
-
-document.getElementById("mensagem").textContent =
-topico.mensagem;
-
-document.getElementById("curtir").textContent =
-topico.reacoes.curtir;
-
-document.getElementById("gostei").textContent =
-topico.reacoes.gostei;
-
-document.getElementById("engracado").textContent =
-topico.reacoes.engraçado;
-
-document.getElementById("impressionante").textContent =
-topico.reacoes.impressionante;
-
-document.getElementById("util").textContent =
-topico.reacoes.util;
-
-/* ===========================
-   Data
-=========================== */
-
-if(topico.data){
-
-    const data = topico.data.toDate();
-
-    document.getElementById("data").textContent =
-    data.toLocaleString("pt-BR");
+    throw new Error("Tópico inexistente.");
 
 }
 
-/* ===========================
-   Gostos
-=========================== */
+document.getElementById("categoria").textContent = topico.categoria;
 
-document.getElementById("gostos").textContent =
-topico.gostos ?? 0;
+document.getElementById("categoriaLateral").textContent = topico.categoria;
+
+document.getElementById("titulo").textContent = topico.titulo;
+
+document.getElementById("autor").textContent = topico.autor;
+
+document.getElementById("autorLateral").textContent = topico.autor;
+
+document.getElementById("cargo").textContent = topico.cargo;
+
+document.getElementById("cargoLateral").textContent = topico.cargo;
+
+document.getElementById("mensagem").textContent = topico.mensagem;
+
+document.getElementById("visualizacoes").textContent = topico.visualizacoes + 1;
+
+document.getElementById("viewsLateral").textContent = topico.visualizacoes + 1;
+
+document.getElementById("respostas").textContent = topico.respostas;
+
+document.getElementById("respostasLateral").textContent = topico.respostas;
+
+if(topico.data){
+
+    document.getElementById("data").textContent =
+
+        topico.data
+
+        .toDate()
+
+        .toLocaleString("pt-BR");
+
+}
+
+document.getElementById("curtir").textContent =
+
+topico.reacoes.curtir;
+
+document.getElementById("gostei").textContent =
+
+topico.reacoes.gostei;
+
+document.getElementById("engracado").textContent =
+
+topico.reacoes.engracado;
+
+document.getElementById("impressionante").textContent =
+
+topico.reacoes.impressionante;
+
+document.getElementById("util").textContent =
+
+topico.reacoes.util;
 
 /* ===========================
    Respostas
 =========================== */
-
-await carregarRespostas(id);
-
-</script>
-
-<script type="module">
 
 const listaRespostas = document.getElementById("listaRespostas");
 
@@ -320,94 +728,192 @@ const respostas = await carregarRespostas(id);
 
 listaRespostas.innerHTML = "";
 
-respostas.forEach((resposta)=>{
+if(respostas.length===0){
 
-    const div = document.createElement("div");
+    listaRespostas.innerHTML = `
 
-    div.className = "topic-card";
+        <div class="topic-card">
 
-    div.innerHTML = `
+            <div class="topic-icon">
 
-        <div class="topic-icon">
+                💬
 
-            👤
+            </div>
 
-        </div>
+            <div class="topic-info">
 
-        <div class="topic-info">
+                <h3>
 
-            <h3>${resposta.autor}</h3>
+                    Ainda não há respostas.
 
-            <p>${resposta.cargo}</p>
+                </h3>
 
-            <br>
+                <p>
 
-            <div>
+                    Seja o primeiro a responder!
 
-                ${resposta.mensagem}
+                </p>
 
             </div>
 
         </div>
 
-        <div class="last-post">
-
-            ${resposta.data}
-
-        </div>
-
     `;
 
-    listaRespostas.appendChild(div);
+}else{
 
-});
+    respostas.forEach((resposta)=>{
+
+        const card = document.createElement("div");
+
+        card.className = "topic-card";
+
+        const data = resposta.data?.toDate
+            ? resposta.data.toDate().toLocaleString("pt-BR")
+            : "-";
+
+        card.innerHTML = `
+
+            <div class="topic-icon">
+
+                👤
+
+            </div>
+
+            <div class="topic-info">
+
+                <h3>
+
+                    ${resposta.autor}
+
+                </h3>
+
+                <p>
+
+                    ${resposta.cargo}
+
+                </p>
+
+                <br>
+
+                <div>
+
+                    ${resposta.mensagem}
+
+                </div>
+
+            </div>
+
+            <div class="last-post">
+
+                ${data}
+
+            </div>
+
+        `;
+
+        listaRespostas.appendChild(card);
+
+    });
+
+}
 
 /* ===========================
-   Enviar resposta
+   Responder
 =========================== */
 
-const formulario = document.getElementById("respostaForm");
+document
 
-formulario.addEventListener("submit",async(e)=>{
+.getElementById("respostaForm")
+
+.addEventListener("submit",async(e)=>{
 
     e.preventDefault();
 
-    const mensagem = document
+    const mensagem =
+
+        document
+
         .getElementById("resposta")
+
         .value
+
         .trim();
 
-    if(mensagem===""){
+    if(!mensagem){
 
         return;
 
     }
 
-    try{
+    await responderTopico(
 
-        await responderTopico(
+        id,
 
-            id,
+        mensagem
 
-            mensagem
+    );
 
-        );
-
-        location.reload();
-
-    }
-
-    catch(erro){
-
-        console.error(erro);
-
-        alert("Não foi possível enviar a resposta.");
-
-    }
+    location.reload();
 
 });
+
+/* ===========================
+   Emojis
+=========================== */
+
+document
+
+.getElementById("btnEmoji")
+
+.onclick = ()=>{
+
+    const campo =
+
+        document.getElementById("resposta");
+
+    campo.value += " 😀";
+
+    campo.focus();
+
+};
+
+/* ===========================
+   Reações
+=========================== */
+
+document
+
+.getElementById("btnCurtir")
+
+.onclick = ()=>reagir(id,"curtir");
+
+document
+
+.getElementById("btnGostei")
+
+.onclick = ()=>reagir(id,"gostei");
+
+document
+
+.getElementById("btnEngracado")
+
+.onclick = ()=>reagir(id,"engracado");
+
+document
+
+.getElementById("btnImpressionante")
+
+.onclick = ()=>reagir(id,"impressionante");
+
+document
+
+.getElementById("btnUtil")
+
+.onclick = ()=>reagir(id,"util");
 
 </script>
 
 </body>
+
 </html>
